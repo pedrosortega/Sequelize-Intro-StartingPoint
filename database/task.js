@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+// const { DataTypes } = require("sequelize");
 const db = require("./db");
 
 // TASK 1: Define the Task model here
