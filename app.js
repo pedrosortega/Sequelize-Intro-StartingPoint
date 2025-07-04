@@ -1,9 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const app = express();
 const apiRouter = require("./api");
-require("dotenv").config();
 const { db } = require("./database");
 const cors = require("cors");
 
@@ -26,7 +26,7 @@ app.use((err, req, res, next) => {
 
 const runApp = async () => {
   try {
-    await db.sync();
+    await db.sync({ force: true });
     console.log("✅ Connected to the database");
     app.listen(PORT, () => {
       console.log(`🚀 Server is running on port ${PORT}`);
