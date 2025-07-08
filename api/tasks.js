@@ -15,14 +15,23 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const result = await Task.create(req.body);
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(501).send("Not implemented");
+  }
+});
+
 // GET a single task by id
 // router.get("/:id", async (req, res) => {
-//   // try {
-//   //   const result = await Task.findByPk(`api/tasks/${id}`);
-//   //   res.send(result);
-//   // } catch (error) {
-//   //   console.error("Error:", error);
-//   // }
+//   try {
+//     const result = await Task.findByPk(`api/tasks/${id}`);
+//     res.send(result);
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
 // });
 // Patch a task by id
 
