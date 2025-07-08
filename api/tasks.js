@@ -15,6 +15,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET a single task by id
+router.get("/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    const result = await Task.findByPk(id);
+    res.send(result);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+});
+// Patch a task by id
+
+// Delete a task by id
+
+// Create a new task
 router.post("/", async (req, res) => {
   try {
     const result = await Task.create(req.body);
@@ -23,21 +38,6 @@ router.post("/", async (req, res) => {
     res.status(501).send("Not implemented");
   }
 });
-
-// GET a single task by id
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const result = await Task.findByPk(`api/tasks/${id}`);
-//     res.send(result);
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-// });
-// Patch a task by id
-
-// Delete a task by id
-
-// Create a new task
 
 module.exports = router;
 
