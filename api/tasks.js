@@ -26,7 +26,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 // Patch a task by id
-
+router.patch("/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    const result = await Task.findByPk(id);
+  } catch (error) {
+    console.error("Error: ", error);
+  }
+});
 // Delete a task by id
 
 // Create a new task
