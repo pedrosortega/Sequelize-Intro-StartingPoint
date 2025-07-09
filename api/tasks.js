@@ -22,24 +22,37 @@ router.get("/:id", async (req, res) => {
     const result = await Task.findByPk(id);
     res.send(result);
   } catch (error) {
-    console.error("Error:", error);
+    res.status(501).send("Not implemented");
   }
 });
 // Patch a task by id
 router.patch("/:id", async (req, res) => {
   try {
     const id = Number(req.params.id);
+    const body = req.body;
     const result = await Task.findByPk(id);
+    await result.update(body);
+    res.send("task updated");
   } catch (error) {
-    console.error("Error: ", error);
+    res.status(501).send("Not implemented");
   }
 });
 // Delete a task by id
+router.delete("/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    const result = await Task.findByPk(id);
+    await result.destroy();
+    res.send("task deleted");
+  } catch (error) {
+    res.status(501).send("Not implemented");
+  }
+});
 
 // Create a new task
 router.post("/", async (req, res) => {
   try {
-    const result = await Task.create(req.body);
+    await Task.create(req.body);
     res.sendStatus(200);
   } catch (error) {
     res.status(501).send("Not implemented");
